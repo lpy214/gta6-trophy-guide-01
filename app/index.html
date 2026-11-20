@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Ledger — GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="An offline guide and tracker for all 55 PlayStation 5 trophies of Grand Theft Auto VI: checklist, roadmap, missables and a cited guide to each trophy.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">LL</div>
+    <div>
+      <h1>Leonida Ledger</h1>
+      <p class="subtitle">Grand Theft Auto VI · PlayStation 5 trophy guide &amp; tracker</p>
+    </div>
+  </div>
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-numbers"><strong id="earned-count">0</strong> of <span id="total-count">55</span> earned · <span id="earned-pct">0%</span></div>
+    <div class="progress-bar" role="progressbar" aria-label="Trophies earned"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="grade-counts" id="grade-counts"></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <a href="#/checklist" data-tab="checklist" class="tab">Checklist</a>
+  <a href="#/roadmap" data-tab="roadmap" class="tab">Roadmap to Platinum</a>
+  <a href="#/missables" data-tab="missables" class="tab">Missables <span class="tab-badge" id="missable-badge">1</span></a>
+  <a href="#/sources" data-tab="sources" class="tab">Sources &amp; method</a>
+</nav>
+
+<main>
+  <section id="view-checklist" class="view">
+    <div class="toolbar">
+      <label class="search-label">Search <input id="search" type="search" placeholder="Trophy, mission or keyword…" autocomplete="off"></label>
+      <label class="select-label">Grade
+        <select id="grade-filter">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label class="select-label">Status
+        <select id="status-filter">
+          <option value="all">Earned &amp; unearned</option>
+          <option value="earned">Earned only</option>
+          <option value="unearned">Not earned yet</option>
+        </select>
+      </label>
+      <label class="switch-label"><input id="spoiler-toggle" type="checkbox" checked> Hide story spoilers</label>
+    </div>
+    <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind"></div>
+    <p class="list-meta" id="list-meta"></p>
+    <div class="checklist-layout">
+      <div class="list-col">
+        <ul class="trophy-list" id="trophy-list"></ul>
+        <p class="empty-note" id="empty-note" hidden></p>
+      </div>
+      <aside class="detail-col" id="detail" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section id="view-roadmap" class="view" hidden>
+    <h2>The road to <span class="nowrap">Vice Got a Price!</span></h2>
+    <p class="lede">One playthrough, about 200 hours, no online trophies and no difficulty settings. PowerPyx rates the set 4 out of 10 — the grind is the 100% checklist, not the story.</p>
+    <div class="steps" id="roadmap-steps"></div>
+    <h3>The 100% checklist, in one place</h3>
+    <p class="lede">The checklist unlocks after the story (Progress &gt; Stats &gt; 100% Completion). It is lenient — closer to 60% true completion — and nothing on it is missable.</p>
+    <table class="checklist-table" id="completion-table">
+      <thead><tr><th>What it asks</th><th>Needed</th><th>Of</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <h3>Ground rules</h3>
+    <ul class="rules-list">
+      <li><strong>Cheats disable trophies and saving.</strong> The 61 cheats only unlock after the story — keep trophy sessions cheat-free, and save before experimenting.</li>
+      <li><strong>No mission replay, no New Game+.</strong> Keep manual saves at the start and end of each chapter (15 manual slots, 1 autosave).</li>
+      <li><strong>Free roam after the story.</strong> Everything needed for 100% stays available; quest givers who vanish mid-story come back.</li>
+      <li><strong>Optional missions disappear.</strong> Black icons with pink letters fade after a while — they do not matter for trophies, since far more than 100 exist.</li>
+    </ul>
+  </section>
+
+  <section id="view-missables" class="view" hidden>
+    <h2>Missable trophies</h2>
+    <p class="lede">Only one trophy is even possibly missable. Everything else — story trophies included — can be earned after the story in free roam.</p>
+    <div id="missable-cards"></div>
+    <h3>Safe by design</h3>
+    <ul class="rules-list" id="safe-list"></ul>
+  </section>
+
+  <section id="view-sources" class="view" hidden>
+    <h2>Sources &amp; method</h2>
+    <p class="lede">The trophy names, descriptions and grades are as PlayStation publishes them, as listed by the trophy trackers. The guides are this ledger's own words — they draw on the sources below and cite them beside each trophy, never copying their text.</p>
+    <div class="source-cards" id="source-cards"></div>
+    <h3>What is still unconfirmed</h3>
+    <ul class="rules-list">
+      <li><strong>Bad Luck, I Guess</strong> — no confirmed method yet; PowerPyx believes it relates to the Payday Loans store from the Prologue. Its guide says so plainly instead of guessing.</li>
+      <li><strong>Fair Game</strong> — which exact animal pops it is still being confirmed by players.</li>
+      <li><strong>Positive Mental Attitude</strong> — whether the missable Chapter 1 meditation is required is unconfirmed; the guide tells you to do it anyway.</li>
+      <li>Rockstar has published no trophy list of its own. The list here rests on Exophase and PSNProfiles agreeing on every name, description and grade, cross-checked against PowerPyx, GTABase, Push Square and GTA Zone.</li>
+    </ul>
+    <h3>Your progress</h3>
+    <p class="lede">Progress lives only in this browser (localStorage) — nothing leaves your machine. Export it to a file to back it up or move it to another browser.</p>
+    <div class="data-actions">
+      <button id="export-btn" type="button">Export progress (.json)</button>
+      <label class="import-btn">Import progress <input id="import-file" type="file" accept="application/json,.json"></label>
+      <button id="reset-btn" type="button" class="danger">Reset all progress</button>
+    </div>
+    <p class="fineprint" id="import-status" role="status"></p>
+  </section>
+</main>
+
+<footer>
+  <p>Leonida Ledger — an unofficial, fan-made guide. Not affiliated with Rockstar Games or PlayStation. Trophy names and descriptions are shown as PlayStation publishes them; all guide text is original. Works offline: every file it loads is in this folder.</p>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
