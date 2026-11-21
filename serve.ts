@@ -1,24 +1,39 @@
-// Leonida Ledger — a tiny static server for trying the guide locally.
-// Serves app/ at http://localhost:8080. No build step, no network calls.
+// Tiny static file server for trying the guide locally:
+//   node serve.ts
+// then open http://localhost:8080 in a desktop browser.
+// Serves only files under app/, nothing else.
+
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
-import { extname, join, normalize } from 'node:path';
+import { readFileSync, existsSync, statSync } from 'node:fs';
+import { join, extname, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = join(fileURLToPath(new URL('.', import.meta.url)), 'app');
-const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg' };
+const appRoot = join(fileURLToPath(new URL('.', import.meta.url)), 'app');
+const PORT = 8080;
+const TYPES: Record<string, string> = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+};
 
-const server = createServer(async (req, res) => {
-  const path = normalize(join(root, decodeURIComponent(req.url.split('?')[0]).replace(/^\/+/, '') || 'index.html'));
-  if (!path.startsWith(root)) { res.writeHead(403); res.end(); return; }
-  try {
-    const body = await readFile(path);
-    res.writeHead(200, { 'content-type': types[extname(path)] || 'application/octet-stream' });
-    res.end(body);
-  } catch {
-    res.writeHead(404);
-    res.end('not found');
+createServer((request, response) => {
+  const path = normalize(join(appRoot, decodeURIComponent(request.url?.split('?')[0] ?? '/')));
+  if (!path.startsWith(appRoot)) {
+    response.writeHead(403);
+    response.end('forbidden');
+    return;
   }
-});
-
-server.listen(8080, () => console.log('Leonida Ledger at http://localhost:8080'));
+  const file = path.endsWith('/') ? join(path, 'index.html') : path;
+  if (!existsSync(file) || !statSync(file).isFile()) {
+    response.writeHead(404);
+    response.end('not found');
+    return;
+  }
+  response.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });
+  response.end(readFileSync(file));
+}).listen(PORT, () => console.log(`serving app/ at http://localhost:${PORT}`));
